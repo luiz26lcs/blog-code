@@ -1,5 +1,4 @@
 import os
-
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from functools import wraps
 from flask_bootstrap import Bootstrap
@@ -9,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired, Email
+from wtforms.validators import DataRequired
 from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -70,14 +69,14 @@ db.create_all()
 
 
 class RegisterForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired(), Email()])
+    email = StringField("Email", validators=[DataRequired()])
     password = StringField("Password", validators=[DataRequired()])
     name = StringField("Username", validators=[DataRequired()])
     submit = SubmitField("SIGN ME UP!")
 
 
 class LoginForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired(), Email()])
+    email = StringField("Email", validators=[DataRequired()])
     password = StringField("Password", validators=[DataRequired()])
     submit = SubmitField("LET ME IN!")
 
